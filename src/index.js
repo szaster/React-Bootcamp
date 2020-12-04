@@ -13,8 +13,10 @@ function Layout(props) {
 //     return <h1>Hello!</h1>;
 //   }
 // }
+
 const year = 2020;
 const greeting = <div>Hello in {year}!</div>;
+
 // const isReactUser = false;
 function Signout() {
   return <button>Signout</button>;
@@ -30,8 +32,14 @@ const isAuthenticated = true;
 
 ReactDOM.render(
   <Layout>
-    {isAuthenticated ? <Header username="Jane" /> : <Login />}
-    {isAuthenticated && <Signout />}
+    {isAuthenticated ? (
+      <React.Fragment>
+        <Header username="Jane" />
+        <Signout />
+      </React.Fragment>
+    ) : (
+      <Login />
+    )}
     <footer>Copyright 2020</footer>
   </Layout>,
   rootNode
