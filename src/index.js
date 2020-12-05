@@ -1,49 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-function Header(props) {
-  return <h1>Hello {props.username}!</h1>;
-}
-
-function Layout(props) {
-  return <div style={{ background: "palegoldenrod" }}>{props.children}</div>;
-}
-// class Header extends React.Component {
-//   render() {
-//     return <h1>Hello!</h1>;
-//   }
-// }
-
-const year = 2020;
-const greeting = <div>Hello in {year}!</div>;
-
 const rootNode = document.getElementById("root");
 
-const isAuthenticated = true;
-
 function App() {
-  const people = ["John", "Dave", "Jane"];
+  const [language, setLanguage] = React.useState("python");
+  //   const [inputValue, setInputValue] = React.useState("");
+  //   const inputValue = inputState[0];
+  //   const setInputValue = inputState[1];
 
-  function handleInputChange(event) {
-    const inputValue = event.target.value;
-    console.log(inputValue);
-  }
+  //   function handleInputChange(event) {
+  //     setInputValue(event.target.value);
+  //     console.log(inputValue);
+  //   }
   return (
-    <ul>
-      {people.map((person, i) => (
-        <Person key={i} person={person} />
-      ))}
-      <input onChange={handleInputChange} />
-    </ul>
+    <div>
+      <button onClick={() => setLanguage("Javascript")}>Change Language</button>
+      <p>I am learning {language}</p>
+      {/* // <input onChange={handleInputChange} />
+      // <p>{inputValue}</p> */}
+    </div>
   );
-}
-
-function Person(props) {
-  function handlePersonClick(event) {
-    alert(props.person);
-    console.log(event);
-  }
-  return <li onClick={handlePersonClick}>{props.person}</li>;
 }
 
 ReactDOM.render(<App />, rootNode);
