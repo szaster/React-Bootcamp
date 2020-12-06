@@ -5,10 +5,15 @@ const rootNode = document.getElementById("root");
 
 function App() {
   const [developer, setDeveloper] = React.useState({
+    name: "",
     language: "python",
     yearsExperience: 0,
     isEmployed: false,
   });
+  React.useEffect(() => {
+    document.title = developer.name;
+    console.log("runs");
+  }, [developer.name]);
   //   const [language, setLanguage] = React.useState("python");
   //   const [yearsExperience, setYearsExperience] = React.useState(0);
   //   const [inputValue, setInputValue] = React.useState("");
@@ -40,13 +45,25 @@ function App() {
       isEmployed: !prevState.isEmployed,
     }));
   }
-
+  function handleChangeName(event) {
+    setDeveloper({
+      ...developer,
+      name: event.target.value,
+    });
+  }
   return (
     <div>
       <button onClick={handleToggleEmployment}>Toggle Employment Status</button>
       <button onClick={handleChangeLanguage}>Change Language</button>
       <div>
         <input type="number" onChange={handleChangeYearsExperience} />
+      </div>
+      <div>
+        <input
+          type="text"
+          onChange={handleChangeName}
+          placeholder="Change name"
+        />
       </div>
       <p>I am learning {developer.language}</p>
       <p>I have {developer.yearsExperience} years of experience.</p>
