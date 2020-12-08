@@ -2,16 +2,11 @@ import React from "react";
 import Login from "./components/Login";
 
 function App() {
-  const [] = React.useState("");
-  React.useEffect(() => {}, []);
-
+  const [user, setUser] = React.useState("");
+  //   React.useEffect(() => {}, []);
   if (!user) {
-    return <Login />;
+    return <Login setUser={setUser} />;
   }
-  return (
-    <div>
-      <p></p>
-    </div>
-  );
+  return <div>App</div>;
 }
 export default App;
