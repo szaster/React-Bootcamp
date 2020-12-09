@@ -3,12 +3,14 @@ import React from "react";
 function CreatePost({ user, setPosts, posts }) {
   const [content, setContent] = React.useState("");
   const [image, setImage] = React.useState(null);
+  //new concept
 
   function handleSubmit(event) {
     event.preventDefault();
     const post = { content: content, image: image, user: user };
     const newPosts = [post, ...posts];
     setPosts(newPosts);
+    setContent("");
   }
 
   return (
@@ -19,6 +21,7 @@ function CreatePost({ user, setPosts, posts }) {
           type="text"
           placeholder="Add Post Content"
           onChange={(event) => setContent(event.target.value)}
+          value={content}
         />
         <input
           type="file"
@@ -26,7 +29,7 @@ function CreatePost({ user, setPosts, posts }) {
         ></input>
         <button type="submit">Submit Post</button>
       </form>
-      <p>{content}</p>
+
       {/* {image && (
         <img
           style={{ height: 200, width: 200, objectFit: "cover" }}

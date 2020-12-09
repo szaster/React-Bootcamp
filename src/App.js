@@ -17,18 +17,20 @@ function App() {
     <div>
       <Header user={user} setUser={setUser} />
       <CreatePost user={user} setPosts={setPosts} posts={posts} />
-      {posts.map((post) => (
-        <div>
-          {post.image && (
-            <img
-              style={{ height: 100, width: 200, objectFit: "cover" }}
-              src={URL.createObjectURL(post.image)}
-              alt="Post cover"
-            />
-          )}
-          <p>{post.content}</p>
-          <div>{user}</div>
-        </div>
+      {posts.map((post, i) => (
+        <React.Fragment key={i}>
+          <div>
+            {post.image && (
+              <img
+                style={{ height: 100, width: 200, objectFit: "cover" }}
+                src={URL.createObjectURL(post.image)}
+                alt="Post cover"
+              />
+            )}
+            <p>{post.content}</p>
+            <div>{user}</div>
+          </div>
+        </React.Fragment>
       ))}
     </div>
   );
