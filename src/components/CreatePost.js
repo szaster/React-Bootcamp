@@ -1,6 +1,6 @@
 import React from "react";
 
-function CreatePost({ user, setPosts, posts }) {
+function CreatePost({ user, handleAddPost }) {
   const [content, setContent] = React.useState("");
   const [image, setImage] = React.useState(null);
   const imageInputRef = React.useRef();
@@ -8,8 +8,16 @@ function CreatePost({ user, setPosts, posts }) {
   function handleSubmit(event) {
     event.preventDefault();
     const post = { content: content, image: image, user: user };
-    const newPosts = [post, ...posts];
-    setPosts(newPosts);
+    //creating an array of new and old posts
+    // const newPosts = [post, ...posts];
+
+    //calling a setter function
+    // setPosts(newPosts);
+
+    //Alternative way of updating post state
+    // setPosts((prevPost) => [post, ...prevPost]);
+    //Another, better alternative: using callback
+    handleAddPost(post);
     //clears input, in <input> component set value={content}
     setContent("");
     imageInputRef.current.value = "";
@@ -32,13 +40,6 @@ function CreatePost({ user, setPosts, posts }) {
         ></input>
         <button type="submit">Submit Post</button>
       </form>
-
-      {/* {image && (
-        <img
-          style={{ height: 200, width: 200, objectFit: "cover" }}
-          src={URL.createObjectURL(image)}
-        />
-      )} */}
     </div>
   );
 }

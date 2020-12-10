@@ -11,13 +11,19 @@ function App() {
     document.title = user ? `${user}'s Feed` : "Please login";
   }, [user]);
 
+  function handleAddPost(newPost) {
+    setPosts([newPost, ...posts]);
+  }
+
   if (!user) {
     return <Login setUser={setUser} />;
   }
   return (
     <div>
       <Header user={user} setUser={setUser} />
-      <CreatePost user={user} setPosts={setPosts} posts={posts} />
+      {/* <CreatePost user={user} setPosts={setPosts} posts={posts} /> */}
+      <CreatePost user={user} handleAddPost={handleAddPost} />
+
       <PostList posts={posts} />
     </div>
   );
