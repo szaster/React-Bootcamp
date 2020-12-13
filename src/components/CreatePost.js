@@ -1,6 +1,8 @@
 import React from "react";
+import { PostContext } from "../App";
 
-function CreatePost({ user, handleAddPost }) {
+function CreatePost({ user }) {
+  const { dispatch } = React.useContext(PostContext);
   const [content, setContent] = React.useState("");
   const [image, setImage] = React.useState(null);
   const imageInputRef = React.useRef();
@@ -17,8 +19,9 @@ function CreatePost({ user, handleAddPost }) {
     //Alternative way of updating post state
     // setPosts((prevPost) => [post, ...prevPost]);
     //Another, better alternative: using callback
-    handleAddPost(post);
+    // handleAddPost(post);
     //clears input, in <input> component set value={content}
+    dispatch({ type: "ADD_POST", payload: { post } });
     setContent("");
     imageInputRef.current.value = "";
   }
