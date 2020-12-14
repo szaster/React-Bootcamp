@@ -9,7 +9,7 @@ function CreatePost({ user }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    const post = { content: content, image: image, user: user };
+    const post = { content: content, image: image, user: user, id: Date.now() };
     //creating an array of new and old posts
     // const newPosts = [post, ...posts];
 
